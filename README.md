@@ -1,4 +1,4 @@
-# 🤖 Azure RAG Chatbot Template (with ChromaDB + FastAPI)
+# 🤖 Drag & Drop RAG Chatbot powered by Azure (with ChromaDB + FastAPI)
 
 A **Retrieval-Augmented Generation (RAG)** chatbot built using **Azure OpenAI**, **FastAPI**, and **ChromaDB**, with an interactive web UI for chat and PDF upload.
 
@@ -22,7 +22,8 @@ This template allows you to:
 ---
 
 ## 🧩 Project Structure
-azure-rag-chatbot/
+<pre> ```
+dragdrop-rag-azure/
 │
 ├── app.py # Main FastAPI application
 │
@@ -43,6 +44,7 @@ azure-rag-chatbot/
 ├── .env # Environment variables
 ├── requirements.txt # Python dependencies
 └── README.md # You are here 😄
+``` </pre>
 
 ---
 
