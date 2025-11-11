@@ -124,6 +124,7 @@ Then open in your browser:
 
 After uploading a travel brochure PDF:
 > User: What are the destinations offered by the travel agent?
+
 > Assistant: The travel agency offers flights to Paris, Tokyo, and Sydney with full package deals including hotels and tours.
 
 ---
