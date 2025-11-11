@@ -22,7 +22,7 @@ This template allows you to:
 ---
 
 ## 🧩 Project Structure
-<pre> ```
+<pre>
 dragdrop-rag-azure/
 │
 ├── app.py # Main FastAPI application
@@ -44,7 +44,7 @@ dragdrop-rag-azure/
 ├── .env # Environment variables
 ├── requirements.txt # Python dependencies
 └── README.md # You are here 😄
-``` </pre>
+</pre>
 
 ---
 
