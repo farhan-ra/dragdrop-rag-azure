@@ -1,27 +1,32 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+import os
+from fastapi import FastAPI, UploadFile, Form, Request
+from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
-from backend.rag_chat import router as chat_router
-from frontend.frontend import router as frontend_router
+from fastapi.templating import Jinja2Templates
+from backend.pdf_loader import add_pdf_to_index
+from backend.rag_chat import ChromaRAGChat
+from backend.config import settings
 
-app = FastAPI(title="Margie’s Travel Assistant", version="1.0")
+app = FastAPI(title=settings.ASSISTANT_NAME)
 
-# Mount static files (CSS, JS)
 app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
+templates = Jinja2Templates(directory="frontend/templates")
+chat_engine = ChromaRAGChat()
 
-# Include routers
-app.include_router(chat_router)
-app.include_router(frontend_router)
+@app.get("/chat", response_class=HTMLResponse)
+async def serve_chat_ui(request: Request):
+    return templates.TemplateResponse("chat.html", {"request": request, "assistant_name": settings.ASSISTANT_NAME})
 
-# Enable CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+@app.post("/upload_pdf")
+async def upload_pdf(file: UploadFile):
+    temp_path = f"temp_{file.filename}"
+    with open(temp_path, "wb") as f:
+        f.write(await file.read())
+    chunks = add_pdf_to_index(temp_path, file.filename)
+    os.remove(temp_path)
+    return {"status": "success", "chunks_added": chunks}
 
-@app.get("/health")
-def health_check():
-    return {"status": "ok", "app": "RAG Chat"}
+@app.post("/chat_message")
+async def chat_message(message: str = Form(...)):
+    reply = chat_engine.chat(message)
+    return {"reply": reply}

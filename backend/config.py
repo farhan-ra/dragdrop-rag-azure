@@ -13,5 +13,6 @@ class Settings:
     SEARCH_URL = os.getenv("SEARCH_ENDPOINT")
     SEARCH_KEY = os.getenv("SEARCH_KEY")
     INDEX_NAME = os.getenv("INDEX_NAME")
+    ASSISTANT_NAME = os.getenv("ASSISTANT_NAME")
 
 settings = Settings()

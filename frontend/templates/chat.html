@@ -2,18 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Margie’s Travel Assistant</title>
-  <link rel="stylesheet" href="/static/css/style.css" />
+  <title>{{ assistant_name }}</title>
+  <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-  <div id="chat-container">
-    <div class="assistant message">
-      👋 Hi! I’m Margie’s Travel Assistant. How can I help you today?
-    </div>
+  <h2>{{ assistant_name }}</h2>
+
+  <!-- Drop zone -->
+  <div id="dropzone" class="dropzone">
+    Drag & Drop PDF here or click to upload
   </div>
+  <input type="file" id="fileInput" accept=".pdf" hidden>
+
+  <div id="chat-container"></div>
 
   <div id="input-container">
-    <input id="user-input" type="text" placeholder="Type a message..." />
+    <input id="user-input" type="text" placeholder="Ask a question..." />
     <button id="send-btn">Send</button>
   </div>
 
