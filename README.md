@@ -1,4 +1,4 @@
-# 🤖 Drag & Drop RAG Chatbot powered by Azure (with ChromaDB + FastAPI)
+# 📚 Drag & Drop RAG Chatbot powered by Azure (with ChromaDB + FastAPI)
 
 A **Retrieval-Augmented Generation (RAG)** chatbot built using **Azure OpenAI**, **FastAPI**, and **ChromaDB**, with an interactive web UI for chat and PDF upload.
 
